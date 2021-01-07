@@ -2,6 +2,7 @@
 
 const repository = require('../repositories/clientRepository');
 const helperMessage = require('../helpers/messageHelper');
+const service = require('../services/clientService');
 
 exports.get = async(req, res, next) => {
     try {
@@ -38,3 +39,11 @@ exports.delete = async(req, res, next) => {
         helperMessage.message(res, 500, 'Falha ao processar sua requisição');
     }
 };
+
+exports.withdraw = async(req, res, next) => {
+    service.withdraw(res, req.body.id, req.body.balanceToBeWithdrawn);
+}
+
+exports.deposit = async(req, res, next) => {
+    service.deposit(res, req.body.id, req.body.balanceToBeDeposit);
+}

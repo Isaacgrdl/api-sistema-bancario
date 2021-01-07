@@ -5,7 +5,6 @@ const router = express.Router();
 const controller = require('../controllers/accountController');
 
 router.get('/', controller.get);
-router.get('/search', controller.getById);
 router.post('/', controller.post);
 router.put('/:id', controller.put);
 router.delete('/', controller.delete);
