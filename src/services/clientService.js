@@ -1,5 +1,6 @@
 'use strict';
 const repository = require('../repositories/accountRepository');
+const helperMessage = require('../helpers/messageHelper');
 
 exports.withdraw = async(res, id, balanceToBeWithdrawn) => {
     const account = await repository.getById(id);
@@ -7,9 +8,9 @@ exports.withdraw = async(res, id, balanceToBeWithdrawn) => {
     if (account.balance > balanceToBeWithdrawn) {
         const newBalance = (account.balance - balanceToBeWithdrawn);
         repository.updateBalance(id, newBalance);
-        res.status(200).send({message: 'Saque efetivado'});
+        helperMessage.message(res, 200, 'Saque efetivado');
     } else {
-        res.status(200).send({message: 'Saque não efetivado'});
+        helperMessage.message(res, 500, 'Falha ao processar a requisição');
     }
 }
 
@@ -19,8 +20,8 @@ exports.deposit = async(res, id, balanceToBeDeposit) => {
     if (balanceToBeDeposit > 0) {
         const newBalance = (parseInt(account.balance) + parseInt(balanceToBeDeposit));
         repository.updateBalance(id, newBalance);
-        res.status(200).send({message: 'Deposito efetivado'});
+        helperMessage.message(res, 200, 'Saque efetivado');
     } else {
-        res.status(200).send({message: 'Deposito não efetivado'});
+        helperMessage.message(res, 500, 'Falha ao processar a requisição');
     }
 }
