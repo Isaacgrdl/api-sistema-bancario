@@ -13,11 +13,7 @@ exports.create = async(data) => {
 }
 
 exports.update = async(id, data) => {
-    await Employee.findByIdAndUpdate(id, {
-        $set: {
-            name: data.name
-        }
-    });
+    await Employee.findByIdAndUpdate(id, {$set: data});
 }
 
 exports.delete = async(id) => {

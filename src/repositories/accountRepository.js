@@ -8,7 +8,7 @@ exports.get = async() => {
 }
 
 exports.getById = async(id) => {
-    const res = await Accound.find(id);
+    const res = await Account.findById(id);
     return res;
 }
 
@@ -18,11 +18,13 @@ exports.create = async(data) => {
 }
 
 exports.update = async(id, data) => {
+    await Account.findByIdAndUpdate(id, {$set: data});
+}
+
+exports.updateBalance = async(id, newBalance) => {
     await Account.findByIdAndUpdate(id, {
         $set: {
-            number: data.number,
-            balance: data.balance,
-            active: data.active
+            balance : newBalance
         }
     });
 }
