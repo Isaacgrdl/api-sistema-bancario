@@ -38,9 +38,3 @@ exports.delete = async(req, res, next) => {
         helperMessage.message(res, 500, 'Falha ao processar sua requisição');
     }
 };
-
-exports.message = (res, statusCode, message) => {
-    return res.status(statusCode).send({
-        message: message
-    });
-}
