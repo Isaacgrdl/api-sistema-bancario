@@ -20,6 +20,7 @@ mongoose.connect(config.connectionString,
 const Client = require('./models/client');
 const Employee = require('./models/employee');
 const Account = require('./models/account');
+const Extract = require('./models/extract');
 
 //Loading Routes
 const indexRoute = require('./routes/indexRoute');
