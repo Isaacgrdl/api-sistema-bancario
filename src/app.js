@@ -27,11 +27,13 @@ const indexRoute = require('./routes/indexRoute');
 const clientRoute = require('./routes/clientRoute');
 const employeeRoute = require('./routes/employeeRoute');
 const accountRoute = require('./routes/accountRoute');
+const authRoute = require('./routes/authRoute');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', indexRoute);
+app.use('/auth', authRoute);
 app.use('/clients', clientRoute);
 app.use('/admin/employee', employeeRoute);
 app.use('/admin/accounts', accountRoute);

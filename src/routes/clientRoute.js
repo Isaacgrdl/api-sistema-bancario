@@ -3,6 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/clientController');
+const authMiddleware = require('../middlewares/authMiddleware');
+
+router.use(authMiddleware);
 
 //CRUD
 router.get('/', controller.get);
