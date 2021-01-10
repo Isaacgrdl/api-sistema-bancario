@@ -16,15 +16,15 @@ exports.lastWeek = () => {
         return [d.getFullYear(), d.getMonth() + 1, d.getDate()].map(d => d > 9 ? d : '0' + d).join('-');
       }
       
-      var hoje = new Date();
-      var ano = hoje.getFullYear();
-      var mes = hoje.getMonth();
-      var dia = hoje.getDate();
+      var today = new Date();
+      var yyyy = today.getFullYear();
+      var mm = today.getMonth();
+      var dd = today.getDate();
       var lastWeek = [];
 
       for (var i = 0; i < 7; i++) {
-        var outroDia = new Date(ano, mes, dia - i);
-        lastWeek[i] = dateToString(outroDia);
+        var otherDay = new Date(yyyy, mm, dd - i);
+        lastWeek[i] = dateToString(otherDay);
       }
       return lastWeek;
 }
@@ -34,15 +34,15 @@ exports.lastMonth = () => {
         return [d.getFullYear(), d.getMonth() + 1, d.getDate()].map(d => d > 9 ? d : '0' + d).join('-');
       }
       
-      var hoje = new Date();
-      var ano = hoje.getFullYear();
-      var mes = hoje.getMonth();
-      var dia = hoje.getDate();
+      var today = new Date();
+      var yyyy = today.getFullYear();
+      var mm = today.getMonth();
+      var dd = today.getDate();
       var lastMonth = [];
 
       for (var i = 0; i < 30; i++) {
-        var outroDia = new Date(ano, mes, dia - i);
-        lastMonth[i] = dateToString(outroDia);
+        var otherDay = new Date(yyyy, mm, dd - i);
+        lastMonth[i] = dateToString(otherDay);
       }
       return lastMonth;
 }
