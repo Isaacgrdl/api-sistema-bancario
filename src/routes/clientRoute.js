@@ -17,11 +17,4 @@ router.delete('/', controller.delete);
 router.post('/withdraw', controller.withdraw);
 router.post('/deposit', controller.deposit);
 
-//Extracts
-router.get('/extract/:id', controller.getExtractById);
-router.get('/extract/today/:id', controller.getExtractToday);
-router.get('/extract/custom/:id', controller.getExtractCustomDate);
-router.get('/extract/lastweek/:id', controller.getExtractLastWeek);
-router.get('/extract/lastMonth/:id', controller.getExtractLastMonth);
-
 module.exports = router;
