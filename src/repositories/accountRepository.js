@@ -7,6 +7,11 @@ exports.get = async() => {
     return res;
 }
 
+exports.getById = async(id) => {
+    const res = await Account.findById(id);
+    return res;
+}
+
 exports.getByClientId = async(id) => {
     const res = await Account.find({active: true}).where('client').equals(id);
     return res;
