@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const Extract = mongoose.model('Extract');
 
 exports.get = async() => {
-    const res = await Extract.find();
+    const res = await Extract.find({}, 'client value date type');
     return res;
 }
 
 exports.getByClientId = async(id) => {
     const res = await 
     Extract
-        .find()
+        .find({}, 'client value date type')
         .where('client').equals(id)
         .populate('client', 'name');
     return res;
@@ -19,7 +19,7 @@ exports.getByClientId = async(id) => {
 exports.getByDate = async(id, date) => {
     const res = await 
     Extract
-        .find({})
+        .find({}, 'client value date type')
         .where('client').equals(id)
         .where('date').equals(date)
         .populate('client', 'name');
