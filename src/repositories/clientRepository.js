@@ -7,6 +7,11 @@ exports.get = async() => {
     return res;
 }
 
+exports.getValidate = async(id) => {
+    const res = await Client.findById(id);
+    return res;
+}
+
 exports.create = async(data) => {
     var client = new Client(data);
     await client.save();
@@ -16,6 +21,6 @@ exports.update = async(id, data) => {
     await Client.findByIdAndUpdate(id, {$set: data});
 }
 
-exports.delete = async(id) => {
-    await Client.findByIdAndDelete(id);
+exports.inactive = async(id, data) => {
+    await Client.findByIdAndUpdate(id, {$set: data});
 }

@@ -7,6 +7,11 @@ exports.get = async() => {
     return res;
 }
 
+exports.getValidate = async(id) => {
+    const res = await Employee.findById(id);
+    return res;
+}
+
 exports.create = async(data) => {
     var employee = new Employee(data);
     await employee.save();

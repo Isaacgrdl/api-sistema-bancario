@@ -32,7 +32,7 @@ exports.sumTotalValue = async(dataType) => {
         _id: null,
         totalValue: { $sum: "$value" },
     });
-      return extract;
+    return extract;
 }
 
 exports.create = async(data) => {

@@ -7,8 +7,8 @@ exports.get = async() => {
     return res;
 }
 
-exports.getById = async(id) => {
-    const res = await Account.findById(id);
+exports.getByClientId = async(id) => {
+    const res = await Account.find({active: true}).where('client').equals(id);
     return res;
 }
 
@@ -18,12 +18,12 @@ exports.getNumAccounts = async(req, res, next) => {
 }
 
 exports.getNumAccountsActive = async(req, res, next) => {
-    const data = await Account.countDocuments({'active': true});
+    const data = await Account.countDocuments({active: true});
     return data;
 }
 
 exports.getNumAccountsClosed = async(req, res, next) => {
-    const data = await Account.countDocuments({'active': false});
+    const data = await Account.countDocuments({active: false});
     return data;
 }
 
@@ -44,6 +44,6 @@ exports.updateBalance = async(id, newBalance) => {
     });
 }
 
-exports.delete = async(id) => {
-    await Account.findByIdAndDelete(id);
+exports.inactive = async(id, data) => {
+    await Account.findByIdAndUpdate(id, {$set: data});
 }

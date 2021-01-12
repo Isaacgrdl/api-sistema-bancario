@@ -1,21 +1,11 @@
 'use strict';
 
 const repository = require('../repositories/accountRepository');
-const repositoryExtract = require('../repositories/extractRepository');
 const helperMessage = require('../helpers/messageHelper');
 
-exports.get = async(req, res, next) => {
+exports.getByClientId = async(req, res, next) => {
     try {
-        var data = await repository.get();
-        res.status(200).send(data);
-    } catch (e) {
-        helperMessage.message(res, 500, 'Falha ao processar sua requisição');
-    }
-}
-
-exports.getById = async(req, res, next) => {
-    try {
-        var data = await repository.getById(req.body.id);
+        var data = await repository.getByClientId(req.userId);
         res.status(200).send(data);
     } catch (e) {
         helperMessage.message(res, 500, 'Falha ao processar sua requisição');
@@ -24,7 +14,11 @@ exports.getById = async(req, res, next) => {
 
 exports.post = async(req, res, next) => {
     try {
-        await repository.create(req.body);
+        const data = {
+            number: req.body.number,
+            client: req.userId
+        }
+        await repository.create(data);
         helperMessage.message(res, 201,'Conta cadastrado com sucesso!' )
     } catch (e) {
         helperMessage.message(res, 500, 'Falha ao processar sua requisição');
@@ -40,10 +34,13 @@ exports.put = async(req, res, next) => {
     }
 };
 
-exports.delete = async(req, res, next) => {
+exports.inactive = async(req, res, next) => {
     try {
-        await repository.delete(req.body.id);
-        helperMessage.message(res, 200, 'Conta removido com sucesso!');
+        const data = {
+            active : false
+        }
+        await repository.inactive(req.params.id, data);
+        helperMessage.message(res, 200, 'Conta inativada com sucesso!');
     } catch (e) {
         helperMessage.message(res, 500, 'Falha ao processar sua requisição');
     }
