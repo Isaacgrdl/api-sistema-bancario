@@ -12,6 +12,21 @@ exports.getById = async(id) => {
     return res;
 }
 
+exports.getNumAccounts = async(req, res, next) => {
+    const data = await Account.countDocuments({});
+    return data;
+}
+
+exports.getNumAccountsActive = async(req, res, next) => {
+    const data = await Account.countDocuments({'active': true});
+    return data;
+}
+
+exports.getNumAccountsClosed = async(req, res, next) => {
+    const data = await Account.countDocuments({'active': false});
+    return data;
+}
+
 exports.create = async(data) => {
     var account = new Account(data);
     await account.save();

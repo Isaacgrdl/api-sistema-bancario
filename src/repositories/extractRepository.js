@@ -19,11 +19,20 @@ exports.getByClientId = async(id) => {
 exports.getByDate = async(id, date) => {
     const res = await 
     Extract
-        .find()
+        .find({})
         .where('client').equals(id)
         .where('date').equals(date)
         .populate('client', 'name');
     return res;
+}
+
+exports.sumTotalValue = async(dataType) => {
+    const extract = await Extract.aggregate([{ $match: { type: dataType } }])
+    .group({
+        _id: null,
+        totalValue: { $sum: "$value" },
+    });
+      return extract;
 }
 
 exports.create = async(data) => {
